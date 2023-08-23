@@ -1,0 +1,7 @@
+/* Fixed Layout */
+.container {
+  width: 800px;
+  padding: 20px;
+  border: 1px solid red;
+  margin: 0 auto;
+}

@@ -1,0 +1,56 @@
+/* Adaptive Layout */
+
+/* All devices - Desktops */
+body {
+  margin: 10px 0;
+}
+.container {
+  width: 800px;
+  margin: 0 auto;
+  border: 1px solid red;
+  overflow: hidden;
+}
+
+.container > * {
+  margin: 20px;
+}
+
+.container > footer {
+  background-color: rgb(38, 38, 38);
+  color: rgb(238, 238, 238);
+  padding: 10px;
+  margin: 0;
+}
+
+/* Styling for Tablet Devices */
+@media (max-width: 800px) {
+  body {
+    background-color: #ccc;
+  }
+  .container {
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .container header nav a {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+}
+
+/* Styling for Mobile Devices */
+@media (max-width: 600px) {
+  body {
+    background-color: #999999;
+  }
+  .container {
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .container header nav a {
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+}

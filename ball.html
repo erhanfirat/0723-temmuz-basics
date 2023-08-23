@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #top {
+        background-color: coral;
+        border: 1px solid rgb(195, 85, 45);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        transition: 0.1s;
+      }
+
+      #context-menu {
+        display: flex;
+        flex-direction: column;
+        background-color: #e4e4e4;
+        border: 1px solid #ccc;
+        position: fixed;
+        top: 0;
+        left: 0;
+        box-shadow: 5px 7px 10px 2px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      #context-menu.hide {
+        display: none;
+      }
+
+      #context-menu > * {
+        padding: 0.75rem;
+        margin: 0;
+      }
+      #context-menu > h5 {
+        border-bottom: 1px solid #ccc;
+      }
+      #context-menu > a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      #context-menu > a:hover {
+        color: #fff;
+        background: #429ef3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="context-menu" class="hide">
+      <h5>Custom Context Menu</h5>
+      <a href="#" id="stop-ball">Topu durdur</a>
+      <a href="#" id="reset-position">Konumu sıfırla</a>
+    </div>
+
+    <div id="top"></div>
+
+    <h1>
+      Topu hareket ettirmek için Aşağı, Yukarı, Sağ ve Sol ok tuşlarını
+      kullanın!
+    </h1>
+
+    <h1>
+      Özelleştirilmiş context menu için ekranın herhangi bir yerine mouse ile
+      sağ tıklayın.
+    </h1>
+
+    <script>
+      let divPositionX = window.innerWidth / 2;
+      let divPositionY = window.innerHeight / 2;
+
+      let xChange = 0;
+      let yChange = 0;
+
+      document.addEventListener("click", function (e) {
+        contextDiv.classList.add("hide");
+      });
+
+      const topDiv = document.getElementById("top");
+
+      document.addEventListener("keydown", function (e) {
+        if (e.code === "ArrowDown") {
+          yChange++;
+        } else if (e.code === "ArrowUp") {
+          yChange--;
+        } else if (e.code === "ArrowLeft") {
+          xChange--;
+        } else if (e.code === "ArrowRight") {
+          xChange++;
+        }
+      });
+
+      setInterval(() => {
+        // Top kenarlara çarpınca yön değiştirir
+        if (divPositionY < 0 || divPositionY > window.innerHeight - 50) {
+          yChange *= -1;
+        }
+        if (divPositionX < 0 || divPositionX > window.innerWidth - 50) {
+          xChange *= -1;
+        }
+
+        // Sürtünme kaynaklı hız azalması
+        if (yChange) yChange = yChange - yChange * 0.01;
+        if (xChange) xChange = xChange - xChange * 0.01;
+
+        // Durmaya yakın durdur
+        if (Math.abs(xChange) < 0.1) xChange = 0;
+        if (Math.abs(yChange) < 0.1) yChange = 0;
+
+        divPositionX += xChange;
+        divPositionY += yChange;
+
+        topDiv.style.top = divPositionY + "px";
+        topDiv.style.left = divPositionX + "px";
+      }, 100);
+
+      const contextDiv = document.getElementById("context-menu");
+
+      window.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        console.log("event > ", e);
+        contextDiv.style.top = e.pageY + "px";
+        contextDiv.style.left = e.pageX + "px";
+        contextDiv.classList.remove("hide");
+      });
+
+      document.getElementById("stop-ball").addEventListener("click", (e) => {
+        e.preventDefault();
+        xChange = 0;
+        yChange = 0;
+      });
+
+      document
+        .getElementById("reset-position")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          divPositionX = window.innerWidth / 2;
+          divPositionY = window.innerHeight / 2;
+        });
+    </script>
+  </body>
+</html>

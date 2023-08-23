@@ -1,0 +1,35 @@
+/* SELECTORS */
+
+.special-link {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  color: white; /* #FFFFFF || rgb(255, 255, 255) */
+  margin: 10px;
+  text-decoration: none;
+  background-color: rgb(11, 124, 244);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.special-link:hover {
+  background-color: rgb(35, 138, 247);
+}
+
+a {
+}
+
+.class-name {
+}
+
+#ana-sayfa {
+  font-weight: bold;
+  font-size: 16px;
+  color: rgb(244, 112, 11);
+  margin: 10px;
+  text-decoration: none;
+}
+
+.img-container {
+  width: 500px;
+}

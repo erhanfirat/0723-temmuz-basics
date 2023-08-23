@@ -1,0 +1,70 @@
+/* Adaptive Layout */
+
+/* All devices - Desktops */
+html {
+  font-size: 100%;
+}
+body {
+  margin: 1rem 0;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid red;
+  overflow: hidden;
+}
+
+.container > * {
+  margin: 1rem;
+}
+
+.container > footer {
+  background-color: rgb(38, 38, 38);
+  color: rgb(238, 238, 238);
+  padding: 1rem;
+  margin: 0;
+}
+
+/* Styling for Tablet Devices */
+@media (max-width: 800px) {
+  html {
+    font-size: 125%;
+  }
+  body {
+    background-color: #ccc;
+  }
+  .container {
+    width: 90%;
+    background-color: white;
+    border-radius: 0.5rem;
+  }
+  .container header nav a {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+}
+
+/* Styling for Mobile Devices */
+@media (max-width: 600px) {
+  html {
+    font-size: 150%;
+  }
+  body {
+    background-color: #999999;
+    padding: 0.5rem;
+  }
+  .container {
+    width: 100%;
+    background-color: white;
+    border-radius: 0.5rem;
+  }
+  .container header nav {
+    display: flex;
+    flex-direction: column;
+  }
+  .container header nav a {
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+}
